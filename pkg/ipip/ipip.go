@@ -28,16 +28,30 @@ func NewIPIP(filePath string) (*IPIPFree, error) {
 }
 
 type Result struct {
-	Country string
-	Region  string
-	City    string
+	Country       string
+	Region        string
+	City          string
+	Isp_domain    string
+	Line          string
+	Countrycode   string
+	Continentcode string
 }
 
 func (r Result) String() string {
+	var result string
+	result = ""
 	if r.City == "" {
-		return fmt.Sprintf("%s %s", r.Country, r.Region)
+		result = fmt.Sprintf("%s %s", r.Country, r.Region)
+	} else {
+		result = fmt.Sprintf("%s %s %s", r.Country, r.Region, r.City)
 	}
-	return fmt.Sprintf("%s %s %s", r.Country, r.Region, r.City)
+
+	result = result + " " + r.Isp_domain
+	result = result + " " + r.Line
+	result = result + " " + r.Countrycode
+	result = result + " " + r.Continentcode
+
+	return result
 }
 
 func (db IPIPFree) Find(query string, params ...string) (result fmt.Stringer, err error) {
@@ -47,9 +61,13 @@ func (db IPIPFree) Find(query string, params ...string) (result fmt.Stringer, er
 	} else {
 		// info contains more info
 		result = Result{
-			Country: info.CountryName,
-			Region:  info.RegionName,
-			City:    info.CityName,
+			Country:       info.CountryName,
+			Region:        info.RegionName,
+			City:          info.CityName,
+			Isp_domain:    info.IspDomain,
+			Line:          info.Line,
+			Countrycode:   info.CountryCode,
+			Continentcode: info.ContinentCode,
 		}
 		return
 	}

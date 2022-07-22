@@ -60,6 +60,13 @@ func GetDefaultDBList() List {
 			Types:     TypesIP,
 		},
 		&DB{
+			Name:      "ipdb",
+			Format:    FormatIPDB,
+			File:      "ipdb.ipdb",
+			Languages: LanguagesZH,
+			Types:     TypesIP,
+		},
+		&DB{
 			Name: "ip2region",
 			NameAlias: []string{
 				"i2r",

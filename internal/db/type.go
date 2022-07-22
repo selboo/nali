@@ -40,6 +40,8 @@ func (d *DB) get() (db dbif.DB) {
 		db, err = zxipv6wry.NewZXwry(filePath)
 	case FormatIPIP:
 		db, err = ipip.NewIPIP(filePath)
+	case FormatIPDB:
+		db, err = ipip.NewIPIP(filePath)
 	case FormatMMDB:
 		db, err = geoip.NewGeoIP(filePath)
 	case FormatIP2Region:
@@ -67,6 +69,7 @@ const (
 	FormatQQWry              = "qqwry"
 	FormatZXIPv6Wry          = "zxipv6wry"
 	FormatIPIP               = "ipip"
+	FormatIPDB               = "ipdb"
 	FormatIP2Region          = "ip2region"
 	FormatIP2Location        = "ip2location"
 
