@@ -41,7 +41,7 @@
 
 ### 从源码安装
 
-Nali 需要预先安装 Go >= 1.18. 安装后可以从源码安装软件:
+Nali 需要预先安装 Go >= 1.19. 安装后可以从源码安装软件:
 
 ```sh
 $ go install github.com/zu1k/nali@latest
@@ -295,11 +295,13 @@ export NALI_DB_IP4=ipip
 1.1.1.1 [Australia]
 ```
 
-### 更换工作目录
+### 工作目录
 
-如果未指定数据库存放目录，数据库默认将存放在 `~/.nali`
+设置环境变量 `NALI_HOME` 来指定工作目录，配置文件和数据库存放在工作目录下。也可在配置文件中使用绝对路径指定其他数据库路径。
 
-设置环境变量 `NALI_HOME` 来指定工作目录，数据库存放在工作目录下。也可在配置文件中使用绝对路径指定其他数据库路径。
+设置环境变量 `NALI_CONFIG_HOME` 来指定配置文件目录，`NALI_DB_HOME` 来执行数据库文件目录
+
+如果未指定相关环境变量，将使用 XDG 规范，配置文件目录在 `$XDG_CONFIG_HOME/nali`，数据库文件目录在 `$XDG_DATA_HOME/nali`
 
 ```
 set NALI_HOME=D:\nali
